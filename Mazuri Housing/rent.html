@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rent Tracking - Mazuri Housing</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<nav>
+    <div class="logo">MAZURI HOUSING</div>
+    <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="register.html">Register</a></li>
+        <li><a href="rent.html">Rent Tracking</a></li>
+        <li><a href="payments.html">Payments</a></li>
+        <li><a href="maintenance.html">Maintenance</a></li>
+    </ul>
+</nav>
+
+<section id="rent">
+    <h2>Rent Tracking</h2>
+    <p>View and manage rent payments.</p>
+
+    <table class="rent-table">
+        <thead>
+            <tr>
+                <th>Tenant Name</th>
+                <th>Amount</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody id="rent-data">
+            <!-- Rent records will be added here dynamically -->
+        </tbody>
+    </table>
+</section>
+
+<script src="scripts/script.js"></script>
+</body>
+</html>

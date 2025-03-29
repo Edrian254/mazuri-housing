@@ -1,0 +1,167 @@
+/* Reset Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Body Styling */
+body {
+    text-align: center;
+    background-color: #f4f4f4;
+    color: #333;
+    padding: 26px;
+}
+
+/* Navigation Bar */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #004d99;
+    color: white;
+    padding: 15px 20px;
+    position: relative;
+}
+
+.logo {
+    font-size: 3.5rem;
+    font-weight: bold;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+}
+
+.nav-links li {
+    margin: 0 15px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: #ffcc00;
+}
+
+.burger {
+    display: none;
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+/* Burger Menu and Navigation on Small Screens */
+@media screen and (max-width: 768px) {
+    .nav-links {
+        flex-direction: column;
+        position: absolute;
+        top: -100%;
+        left: 0;
+        width: 100%;
+        background: #004d99;
+        text-align: center;
+        padding: 10px 0;
+        transition: top 0.3s ease-in-out;
+    }
+
+    .nav-links.active {
+        top: 60px;
+    }
+
+    .burger {
+        display: block;
+    }
+}
+
+/* Home Section */
+#home, #register, #rent {
+    color: white;
+    text-align: center;
+    padding: 80px 20px;
+    border-radius: 10px;
+}
+
+#home {
+    background: url('56369407_MzAwLTE1OC04Y2EzYzcwOTg0LTE.webp') no-repeat center center/cover;
+}
+
+#register {
+    background: url('61028231_MzAwLTQxNC1jMTFhM2IzYjc3.webp') no-repeat center center/cover;
+    margin: 30px auto;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0px 4px 10px rgba(89, 158, 49, 0.1);
+}
+
+#rent {
+    background: url('56182069_MzAwLTIwMC0wZjE5ZjAxYTYx.webp') no-repeat center center/cover;
+    margin: 30px auto;
+    width: 90%;
+    max-width: 800px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Forms and Tables */
+#register form, #rent-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 20px;
+    background: rgba(87, 17, 226, 0.8);
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+input, select, button {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+button {
+    background: #007BFF;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+button:hover {
+    background: #0056b3;
+}
+
+.rent-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    overflow-x: auto;
+    display: block;
+}
+
+.rent-table th, .rent-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+}
+
+.rent-table th {
+    background: #007BFF;
+    color: white;
+}
+
+.rent-table td {
+    color: #333;
+}
+
+.rent-table tr:nth-child(even) {
+    background: #f4f4f4;
+}

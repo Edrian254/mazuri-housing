@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Website</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="logo">Mazuri Housing</div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#register">Register</a></li>
+            <li><a href="#rent">Rent</a></li>
+        </ul>
+        <div class="burger" onclick="toggleNav()">&#9776;</div>
+    </nav>
+
+    <!-- Home Section -->
+    <section id="home">
+        <h1>Welcome to Mazuri Housing</h1>
+    </section>
+
+    <!-- Register Section -->
+    <section id="register">
+        <h2>Register for More Information</h2>
+        <form>
+            <input type="text" placeholder="Username" required>
+            <input type="email" placeholder="Email" required>
+            <input type="password" placeholder="Password" required>
+            <button type="submit">Register</button>
+        </form>
+    </section>
+
+    <!-- Rent Section -->
+    <section id="rent">
+        <h2>Find Rent Properties</h2>
+        <table class="rent-table">
+            <thead>
+                <tr>
+                    <th>Property</th>
+                    <th>Price</th>
+                    <th>Location</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Apartment 1</td>
+                    <td>$1000</td>
+                    <td>Location 1</td>
+                </tr>
+                <tr>
+                    <td>Apartment 2</td>
+                    <td>$1200</td>
+                    <td>Location 2</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <script>
+        // Toggle nav menu on mobile
+        function toggleNav() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+
+</body>
+</html>
+

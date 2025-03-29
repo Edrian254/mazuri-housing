@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Mazuri Housing</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<nav>
+    <div class="logo">MAZURI HOUSING</div>
+    <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="register.html">Register</a></li>
+        <li><a href="rent.html">Rent Tracking</a></li>
+        <li><a href="payments.html">Payments</a></li>
+        <li><a href="maintenance.html">Maintenance</a></li>
+    </ul>
+</nav>
+
+<section id="register">
+    <h2>Tenant & Landlord Registration</h2>
+    <form id="register-form">
+        <label for="fullname">Full Name:</label>
+        <input type="text" id="fullname" name="fullname" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="role">Role:</label>
+        <select id="role" name="role">
+            <option value="tenant">Tenant</option>
+            <option value="landlord">Landlord</option>
+        </select>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+
+        <button type="submit">Register</button>
+    </form>
+</section>
+
+<script src="scripts/script.js"></script>
+</body>
+</html>
