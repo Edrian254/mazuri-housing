@@ -80,7 +80,7 @@ nav {
 }
 
 /* Home Section */
-#home, #register, #rent {
+#home, #register, #rent, #payments, #maintenance {
     color: white;
     text-align: center;
     padding: 80px 20px;
@@ -91,7 +91,7 @@ nav {
     background: url('56369407_MzAwLTE1OC04Y2EzYzcwOTg0LTE.webp') no-repeat center center/cover;
 }
 
-#register {
+#register, #payments, #maintenance {
     background: url('61028231_MzAwLTQxNC1jMTFhM2IzYjc3.webp') no-repeat center center/cover;
     margin: 30px auto;
     width: 90%;
@@ -108,7 +108,7 @@ nav {
 }
 
 /* Forms and Tables */
-#register form, #rent-form {
+#register form, #rent-form, #maintenance-form, #payments-form {
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -139,7 +139,8 @@ button:hover {
     background: #0056b3;
 }
 
-.rent-table {
+/* Rent Table */
+.rent-table, .payments-table, .maintenance-table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
@@ -147,21 +148,30 @@ button:hover {
     display: block;
 }
 
-.rent-table th, .rent-table td {
+.rent-table th, .rent-table td, .payments-table th, .payments-table td, .maintenance-table th, .maintenance-table td {
     border: 1px solid #ddd;
     padding: 10px;
     text-align: center;
 }
 
-.rent-table th {
+.rent-table th, .payments-table th, .maintenance-table th {
     background: #007BFF;
     color: white;
 }
 
-.rent-table td {
+.rent-table td, .payments-table td, .maintenance-table td {
     color: #333;
 }
 
-.rent-table tr:nth-child(even) {
+.rent-table tr:nth-child(even), .payments-table tr:nth-child(even), .maintenance-table tr:nth-child(even) {
     background: #f4f4f4;
+}
+
+/* Maintenance Request Section */
+#maintenance-form {
+    background: rgba(240, 128, 128, 0.8);
+}
+
+#maintenance-table td {
+    color: #333;
 }

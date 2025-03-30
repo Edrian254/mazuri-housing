@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Responsive Website</title>
+    <title>Mazuri Housing</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css"> <!-- Make sure you have a proper CSS file linked -->
 </head>
 <body>
 
@@ -16,6 +16,8 @@
             <li><a href="#home">Home</a></li>
             <li><a href="#register">Register</a></li>
             <li><a href="#rent">Rent</a></li>
+            <li><a href="#payments">Payments</a></li>
+            <li><a href="#maintenance">Maintenance</a></li>
         </ul>
         <div class="burger" onclick="toggleNav()">&#9776;</div>
     </nav>
@@ -23,53 +25,233 @@
     <!-- Home Section -->
     <section id="home">
         <h1>Welcome to Mazuri Housing</h1>
+        <p>Manage tenants, landlords, rent payments, and maintenance requests easily.</p>
     </section>
 
     <!-- Register Section -->
     <section id="register">
-        <h2>Register for More Information</h2>
-        <form>
-            <input type="text" placeholder="Username" required>
-            <input type="email" placeholder="Email" required>
-            <input type="password" placeholder="Password" required>
+        <h2>Tenant & Landlord Registration</h2>
+        <form id="register-form">
+            <label for="fullname">Full Name:</label>
+            <input type="text" id="fullname" name="fullname" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="role">Role:</label>
+            <select id="role" name="role">
+                <option value="tenant">Tenant</option>
+                <option value="landlord">Landlord</option>
+            </select>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+
             <button type="submit">Register</button>
         </form>
     </section>
 
     <!-- Rent Section -->
     <section id="rent">
-        <h2>Find Rent Properties</h2>
+        <h2>Rent Tracking</h2>
+        <p>View and manage rent payments.</p>
+
+        <form id="rent-form">
+            <label for="tenant-id">Tenant ID:</label>
+            <input type="number" id="tenant-id" name="tenant-id" required>
+
+            <label for="amount">Amount:</label>
+            <input type="number" id="amount" name="amount" required>
+
+            <label for="due-date">Due Date:</label>
+            <input type="date" id="due-date" name="due-date" required>
+
+            <label for="status">Status:</label>
+            <select id="status" name="status" required>
+                <option value="Paid">Paid</option>
+                <option value="Unpaid">Unpaid</option>
+            </select>
+
+            <button type="submit">Add Rent</button>
+        </form>
+
         <table class="rent-table">
             <thead>
                 <tr>
-                    <th>Property</th>
-                    <th>Price</th>
-                    <th>Location</th>
+                    <th>Tenant Name</th>
+                    <th>Amount</th>
+                    <th>Status</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr>
-                    <td>Apartment 1</td>
-                    <td>$1000</td>
-                    <td>Location 1</td>
-                </tr>
-                <tr>
-                    <td>Apartment 2</td>
-                    <td>$1200</td>
-                    <td>Location 2</td>
-                </tr>
+            <tbody id="rent-data">
+                <!-- Rent records will be added here dynamically -->
             </tbody>
         </table>
     </section>
 
+    <!-- Payments Section -->
+    <section id="payments">
+        <h2>Payments Tracking</h2>
+        <table class="payments-table">
+            <thead>
+                <tr>
+                    <th>Tenant Name</th>
+                    <th>Amount</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody id="payments-data">
+                <!-- Payment records will be added here dynamically -->
+            </tbody>
+        </table>
+    </section>
+
+    <!-- Maintenance Section -->
+    <section id="maintenance">
+        <h2>Maintenance Requests</h2>
+        <table class="maintenance-table">
+            <thead>
+                <tr>
+                    <th>Request ID</th>
+                    <th>Tenant Name</th>
+                    <th>Description</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody id="maintenance-data">
+                <!-- Maintenance records will be added here dynamically -->
+            </tbody>
+        </table>
+
+        <form id="maintenance-form">
+            <label for="tenant-id">Tenant ID:</label>
+            <input type="number" id="tenant-id" name="tenant-id" required>
+
+            <label for="description">Description:</label>
+            <textarea id="description" name="description" required></textarea>
+
+            <button type="submit">Submit Request</button>
+        </form>
+    </section>
+
+    <!-- JavaScript -->
     <script>
         // Toggle nav menu on mobile
         function toggleNav() {
             const navLinks = document.querySelector('.nav-links');
             navLinks.classList.toggle('active');
         }
+
+        // Rent data handling
+        document.addEventListener("DOMContentLoaded", async function () {
+            try {
+                const response = await fetch("http://localhost:5000/api/data/rent");
+                const rentData = await response.json();
+
+                const tableBody = document.getElementById("rent-data");
+                tableBody.innerHTML = ""; // Clear existing rows
+
+                rentData.forEach((rent) => {
+                    const row = document.createElement("tr");
+                    const rentStatusColor = rent.status === "Paid" ? "green" : "red";
+
+                    row.innerHTML = `
+                        <td>${rent.tenant_id}</td>
+                        <td>${rent.amount}</td>
+                        <td style="color: ${rentStatusColor};">${rent.status}</td>
+                    `;
+                    tableBody.appendChild(row);
+                });
+            } catch (error) {
+                console.error("Error fetching rent data:", error);
+                alert("Failed to load rent data. Check server connection.");
+            }
+        });
+
+        // Payments data handling
+        document.addEventListener("DOMContentLoaded", async function () {
+            try {
+                const response = await fetch("http://localhost:5000/api/data/payments");
+                const paymentData = await response.json();
+
+                const tableBody = document.getElementById("payments-data");
+                tableBody.innerHTML = ""; // Clear existing rows
+
+                paymentData.forEach((payment) => {
+                    const row = document.createElement("tr");
+                    const paymentStatusColor = payment.status === "Completed" ? "green" : "red";
+
+                    row.innerHTML = `
+                        <td>${payment.tenant_id}</td>
+                        <td>${payment.amount}</td>
+                        <td>${payment.payment_date}</td>
+                        <td style="color: ${paymentStatusColor};">${payment.status}</td>
+                    `;
+                    tableBody.appendChild(row);
+                });
+            } catch (error) {
+                console.error("Error fetching payment data:", error);
+                alert("Failed to load payment data. Check server connection.");
+            }
+        });
+
+        // Maintenance data handling
+        document.addEventListener("DOMContentLoaded", async function () {
+            try {
+                const response = await fetch("http://localhost:5000/api/data/maintenance");
+                const maintenanceData = await response.json();
+
+                const tableBody = document.getElementById("maintenance-data");
+                tableBody.innerHTML = ""; // Clear existing rows
+
+                maintenanceData.forEach((request) => {
+                    const row = document.createElement("tr");
+                    const requestStatusColor = request.status === "Resolved" ? "green" : "red";
+
+                    row.innerHTML = `
+                        <td>${request.id}</td>
+                        <td>${request.tenant_id}</td>
+                        <td>${request.description}</td>
+                        <td style="color: ${requestStatusColor};">${request.status}</td>
+                    `;
+                    tableBody.appendChild(row);
+                });
+            } catch (error) {
+                console.error("Error fetching maintenance data:", error);
+                alert("Failed to load maintenance data. Check server connection.");
+            }
+        });
+
+        // Maintenance form submission
+        document.getElementById("maintenance-form").addEventListener("submit", async function (event) {
+            event.preventDefault();
+
+            const tenantId = document.getElementById("tenant-id").value;
+            const description = document.getElementById("description").value;
+
+            try {
+                const response = await fetch("http://localhost:5000/api/data/maintenance", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({ tenant_id: tenantId, description }),
+                });
+
+                const result = await response.json();
+                if (response.ok) {
+                    alert(result.message);
+                    document.getElementById("maintenance-form").reset();
+                } else {
+                    alert(result.message || "Failed to submit request");
+                }
+            } catch (error) {
+                console.error("Error submitting maintenance request:", error);
+                alert("Failed to submit request. Check server connection.");
+            }
+        });
     </script>
 
 </body>
 </html>
-
